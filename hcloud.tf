@@ -31,21 +31,21 @@ resource "hcloud_server" "web" {
 
 }
 
-resource "hcloud_ssh_key" "primary-ssh-key" {
-  name = "primary-ssh-key"
-  public_key = tls_private_key.generic-ssh-key.public_key_openssh
-}
-
-resource "tls_private_key" "generic-ssh-key" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-
-  provisioner "local-exec" {
-    command = <<EOF
-    echo "${tls_private_key.generic-ssh-key.private_key_openssh} >> ~/src/apache/.envrc"
-    EOF
-  }
-}
+#resource "hcloud_ssh_key" "primary-ssh-key" {
+#  name = "primary-ssh-key"
+#  public_key = tls_private_key.generic-ssh-key.public_key_openssh
+#}
+#
+#resource "tls_private_key" "generic-ssh-key" {
+#  algorithm = "RSA"
+#  rsa_bits  = 4096
+#
+#  provisioner "local-exec" {
+#    command = <<EOF
+#    echo "${tls_private_key.generic-ssh-key.private_key_openssh} >> ~/src/apache/.envrc"
+#    EOF
+#  }
+#}
 
 
 resource "hcloud_firewall" "myfirewall" {
